@@ -12,5 +12,6 @@ urlpatterns = [
    path('movies/<int:movie_id>/',views.movie_detail,name='movie_detail'),
    path('movies/<str:category>/<int:id>/',views.category_movies,name='category_movies'),
    # path('movies/page/<int:page>/<int:id>/',views.category_movies,name='category_movies'),
-   path('movies/<str:category>/<int:id>/<int:page>/',views.category_movies,name='category_movies')
+   path('movies/<str:category>/<int:id>/<int:page>/',views.category_movies,name='category_movies'),
+   path('movies/movie_trailer/<movie_title>', views.movie_trailer, name='movie_trailer')
 ]

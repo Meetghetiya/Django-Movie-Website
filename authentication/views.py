@@ -62,7 +62,7 @@ def signup(request):
 
         send_mail(subject, message, settings.EMAIL_HOST_USER, [user.email])
 
-        messages.success(request, "Account created successfully. Activation email has been sent.")
+        messages.success(request, "Account created successfully. Activation account Link has been sent in your email.")
         return redirect('/auth/login/')  
 
 

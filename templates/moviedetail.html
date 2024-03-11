@@ -23,9 +23,10 @@
 
    <section class="movie-detail">
             <div class="container">
-    
+
+              <a href="{% url 'movie_trailer' movie_title=title %}">
               <figure class="movie-detail-banner">
-    
+                
                 <img src="https://image.tmdb.org/t/p/w500/{{poster}}" alt="{{title}} Poster" class="card-img">
     
                 <button class="play-btn">
@@ -33,6 +34,7 @@
                 </button>
     
               </figure>
+              </a>
     
               <div class="movie-detail-content">
     
@@ -85,11 +87,15 @@
                     <span>Share</span>
                   </button>
     
+                  <a href="{% url 'movie_trailer' movie_title=title %}">
                   <div class="title-wrapper">
-                    <p class="title">Prime Video</p>
-    
-                    <p class="text">Streaming Channels</p>
+                    
+                    <button class="btn btn-primary">  
+                      <span>Trailer</span>
+                    </button>
+                    
                   </div>
+                  </a>
     
                    <a href="{% url 'add_to_watchlist' movie_id=movie_id %}">
                   <button class="btn btn-primary">

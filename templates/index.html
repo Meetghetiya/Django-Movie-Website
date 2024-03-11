@@ -29,7 +29,7 @@
 
 {% block moviecontent %}
   
-   <div class="movies-grid">
+   <div class="movies-grid" id="movies-container">
             
         {% for movie in movies %}
           <div class="movie-card">
@@ -73,11 +73,11 @@
 
         </div>
 
-         <button class="load-more">
+        {% comment %} <button class="load-more" id="load-more-btn">
          {% if page < total_pages %}
           <a href="{% url 'index' page=page|add:1 %}">Load More</a>
          {% endif %}
-        </button>
+        </button> {% endcomment %}
 
 {% endblock moviecontent %}
 
@@ -159,4 +159,6 @@
 
       </section>
 
+     
 {% endblock category %}
+

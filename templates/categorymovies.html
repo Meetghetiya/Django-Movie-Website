@@ -68,10 +68,12 @@
 
         </div>
 
+        {% comment %}
          <button class="load-more">
          {% if page < total_pages %}
           <a href="{% url 'category_movies' id=id page=page|add:1  category=category%}">Load More</a>
          {% endif %}
         </button>
+        {% endcomment %}
 
 {% endblock moviecontent %}

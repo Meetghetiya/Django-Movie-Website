@@ -1,9 +1,11 @@
+from django.http import JsonResponse
 import requests
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .models import Movie
 
 def index(request,page=1):
+
     api_key = '678701dc7dc66aa11759f9b9a836fcb9'  # Replace with your actual API key
     url = f'https://api.themoviedb.org/3/discover/movie?api_key={api_key}&sort_by=popularity.desc&with_genres=28&page={page}'
     
@@ -61,10 +63,8 @@ def movie_detail(request, movie_id):
         release_date = movie_data['release_date']
         runtime = movie_data['runtime']
         overview = movie_data['overview']
-        # Retrieve other movie details from the movie_data dictionary
     except requests.exceptions.RequestException as e:
         movie_name = "Movie not found"
-        # Handle the case when the movie data cannot be fetched or an error occurs
 
     context = {
         'movie_id': movie_id,
@@ -194,3 +194,28 @@ def search_movie(request):
             return render(request, 'search.html', {'movies': movies})
 
     return render(request, 'search.html')
+
+from django.conf import settings
+from django.shortcuts import render
+from googleapiclient.discovery import build
+
+def movie_trailer(request,movie_title):
+    youtube_api_key = 'AIzaSyD7vaPCKE7P8p1-To4gTc0NQcq42j_7-fw'  # Replace with your YouTube API key
+    movie_title = movie_title  # Replace with the actual movie title you want to search for
+
+    # Call the YouTube API to search for movie trailer
+    youtube = build('youtube', 'v3', developerKey=youtube_api_key)
+    search_response = youtube.search().list(
+        q=f'{movie_title} official trailer',
+        part='id',
+        maxResults=1,
+        type='video'
+    ).execute()
+
+    trailer_key = None
+    if 'items' in search_response and search_response['items']:
+        trailer_key = search_response['items'][0]['id']['videoId']
+
+    return render(request, 'movie_trailer.html', {'trailer_key': trailer_key})
+
+

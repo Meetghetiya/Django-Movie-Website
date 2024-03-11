@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  movie detail page
+{% endblock title %}
+
+{% block moviecontent %}
+{% for message in messages %}
+<div class="alert alert-{{message.tags}} alert-dismissible fade show mt-5" role="alert">
+  <strong>{{message}}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{% endfor %}
+
+  <div class="p-1">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ trailer_key }}" frameborder="0" allowfullscreen></iframe>
+  </div>
+{% endblock moviecontent %}
+
+<!-- movie_app/templates/movie_trailer.html -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Trailer</title>
+</head>
+<body>
+    {% if trailer_key %}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ trailer_key }}" frameborder="0" allowfullscreen></iframe>
+    {% else %}
+        <p>Sorry, no trailer available for this movie.</p>
+    {% endif %}
+</body>
+</html> -->
+
+<!-- ---------------------------------------------- -->
+
